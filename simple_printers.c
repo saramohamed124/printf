@@ -14,9 +14,9 @@ int sum = 0;
 
 while (start <= stop)
 {
-if (start != except)
-sum += putchar(*start);
-start++;
+	if (start != except)
+		sum += _putchar(*start);
+	start++;
 }
 return (sum);
 }
@@ -24,7 +24,6 @@ return (sum);
  * print_rev - prints string in reverse
  * @ap: string
  * @params: the parameters struct
- *
  * Return: number bytes
  */
 int print_rev(va_list ap, params_t *params)
@@ -35,11 +34,11 @@ char *str = va_arg(ap, char*);
 
 if (str)
 {
-for (len = 0; *str; str++)
-len++;
-str--;
-for (; len > 0; len--, str--)
-sum += putchar(*str);
+	for (len = 0; *str; str++)
+		len++;
+	str--;
+	for (; len > 0; len--, str--)
+		sum += _putchar(*str);
 }
 return (sum);
 }
@@ -63,15 +62,15 @@ i = 0;
 index = 0;
 while (a[i])
 {
-if ((a[i] >= 'A' && a[i] <= 'Z')
-|| (a[i] >= 'a' && a[i] <= 'z'))
-{
-index = a[i] - 65;
-count += putchar(arr[index]);
-}
-else
-count += putchar(a[i]);
-i++;
+
+	if ((a[i] >= 'A' && a[i] <= 'Z') || (a[i] >= 'a' && a[i] <= 'z'))
+	{
+		index = a[i] - 65;
+		count += _putchar(arr[index]);
+	}
+	else
+		count += _putchar(a[i]);
+	i++;
 }
 return (count);
 }
