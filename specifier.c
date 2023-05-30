@@ -52,3 +52,82 @@ if (f)
 return (f(ap, params));
 return (0);
 }
+
+/**
+ * get_flag - finds the flags func
+ * @s: the format string
+ * @params: the parameters struct
+ * Return: the flags
+ */
+int get_flag(char *s, params_t *params)
+{
+int i = 0;
+
+switch (*s)
+{
+
+	case '+':
+		i = params->plus_flag = 1;
+		break;
+	case ' ':
+		i = params->space_flag = 1;
+		break;
+	case '#':
+		i = params->hashtag_flag = 1;
+		break;
+	case '-':
+		i = params->minus_flag = 1;
+		break;
+	case '0':
+		i = params->zero_flag = 1;
+		break;
+}
+return (i);
+}
+
+/**
+ * get_modifier - finds the modifier func
+ * @s: the format string
+ * @params: the parameters struct
+ * Return: the modifier
+ */
+int get_modifier(char *s, params_t *params)
+{
+int i = 0;
+
+switch (*s)
+{
+	case 'h':
+		i = params->h_modifier = 1;
+		break;
+	case 'l':
+		i = params->l_modifier = 1;
+		break;
+}
+return (i);
+}
+
+/**
+ * get_width - finds the format func
+ * @s: the format string
+ * @ap: argument pointer
+ * @params: the parameters struct
+ * Return: the width
+ */
+char *get_width(char *s, params_t *params, va_list ap)
+{
+int d = 0;
+
+if (*s == '*')
+{
+	d = va_arg(ap, int);
+	s++;
+}
+else
+{
+	while (_isdigit(*s))
+		d = d * 10 + (*s++ - '0');
+}
+params->width = d;
+return (s);
+}
