@@ -49,7 +49,6 @@ typedef struct parameters
 	unsigned int l_modifier : 1;
 } params_t;
 
-
 /**
  * struct specifier - struct token
  * @specifier: format
