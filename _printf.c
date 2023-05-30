@@ -12,9 +12,7 @@ int _printf(const char *format, ...)
 	va_list ap;
 	char *p, *start;
 	params_t params = PARAMS_INIT;
-
 	va_start(ap, format);
-
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
@@ -46,7 +44,6 @@ int _printf(const char *format, ...)
 	_putchar(BUF_FLUSH);
 	va_end(ap);
 	return (sum);
-
 if (!format || (format[0] == '%' && !format[1]))
 return (-1);
 if (format[0] == '%' && format[1] == ' ' && !format[2])
