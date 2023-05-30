@@ -63,3 +63,68 @@ if (!params->minus_flag)
 }
 return (su);
 }
+
+/**
+ * print_percent - print_percent
+ * @ap: va list
+ * @params: struct parameter
+ * Return: percent
+ */
+int print_percent(va_list ap, params_t *params)
+{
+(void)ap;
+(void)params;
+return (_putchar('%'));
+}
+
+/**
+ * print_S - print_specifier
+ * @ap: va list
+ * @params: struct parameter
+ * Return: specifier
+ */
+
+int print_S(va_list ap, params_t *params)
+{
+char *s = va_arg(ap, char *);
+char *hex;
+int su = 0;
+
+if((int)(!s))
+	return (_puts(NULL_STRING));
+
+for(; *s; s++)
+{
+	if ((*s > 0 && *s < 32) || *s >= 127)
+	{
+		su += _putchar('\\');
+		su += _putchar('x');
+		hex = convert(*s, 16, 0, params);
+		if (!hex[1])
+			su += _putchar('0');
+		su += _puts(hex);
+	}
+	else
+		su += _putchar(*s);
+}
+return (su);
+}
+
+/**
+ * print_int - print_integer
+ * @ap: va list
+ * @params: struct parameter
+ * Return: int
+ */
+int print_int(va_list ap, params_t *params)
+{
+long l;
+
+if (params->l_modifier)
+	l = va_arg(ap, long);
+else if (params->h_modifier)
+	l = (short int)va_arg(ap, int);
+else
+	l = (int)va_arg(ap, int);
+return (print_number(convert(l, 10, 0, params), params));
+}
