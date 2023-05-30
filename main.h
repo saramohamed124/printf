@@ -17,6 +17,50 @@
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
 
+/**
+ * struct parameters - struct parameters
+ * @unsign: plus_flag
+ * @plus_flag: plus_flag
+ * @space_flag: space_flag
+ * @width: width
+ * @minus_flag: minus_flag
+ * @zero_flag: zero_flag
+ * @hashtag_flag: hashtag_flag
+ * @precision: precision
+ * @h_modifier: h_modifier
+ * @l_modifier: l_modifier
+ */
+struct parameters
+{
+        unsigned int unsign : 1;
+        unsigned int plus_flag : 1;
+        unsigned int space_flag : 1;
+        unsigned int hashtag_flag : 1;
+        unsigned int zero_flag : 1;
+        unsigned int minus_flag : 1;
+
+        unsigned int width;
+        unsigned int precision;
+
+        unsigned int h_modifier : 1;
+        unsigned int l_modifier : 1;
+};
+
+typedef struct parameters params_t;
+
+/**
+ * struct specifier - struct token
+ * @specifier: format
+ * @f: the function associated
+ */
+struct specifier
+{
+        char *specifier;
+        int (*f)(va_list, params_t *);
+};
+
+typedef struct specifier specifier_t;
+
 int _printf(const char *format, ...);
 void init_params(params_t *params, va_list ap);
 int _puts(char *str);
@@ -46,44 +90,7 @@ int  print_from_to(char *start, char *stop, char *except);
 int print_rev(va_list ap, params_t *params);
 int print_rot13(va_list ap, params_t *params);
 
-/**
- * struct specifier - struct token
- * @specifier: format
- * @f: the function associated
- */
-typedef struct specifier
-{
-	char *specifier;
-	int (*f)(va_list, params_t *);
-}specifier_t;
 
-/**
- * struct parameters - struct parameters
- * @unsign: plus_flag
- * @plus_flag: plus_flag
- * @space_flag: space_flag
- * @width: width
- * @minus_flag: minus_flag
- * @zero_flag: zero_flag
- * @hashtag_flag: hashtag_flag
- * @precision: precision
- * @h_modifier: h_modifier
- * @l_modifier: l_modifier
- */
-typedef struct parameters
-{
-        unsigned int unsign : 1;
-        unsigned int plus_flag : 1;
-        unsigned int space_flag : 1;
-        unsigned int hashtag_flag : 1;
-        unsigned int zero_flag : 1;
-        unsigned int minus_flag : 1;
-
-        unsigned int width;
-	unsigned int precision;
-	unsigned int h_modifier : 1;
-        unsigned int l_modifier : 1;
-}params_t;
 
 int _isdigit(int c);
 int _strlen(char *s);
