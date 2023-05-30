@@ -15,7 +15,6 @@ int _printf(const char *format, ...)
 
 	va_start(ap, format);
 
-<<<<<<< HEAD
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
@@ -47,7 +46,7 @@ int _printf(const char *format, ...)
 	putchar(BUF_FLUSH);
 	va_end(ap);
 	return (sum);
-=======
+
 if (!format || (format[0] == '%' && !format[1]))
 return (-1);
 if (format[0] == '%' && format[1] == ' ' && !format[2])
@@ -79,5 +78,4 @@ sum += get_print_func(p, ap, &params);
 _putchar(BUF_FLUSH);
 va_end(ap);
 return (sum);
->>>>>>> 8c02abd758c1fccc92bfa79e4bfd15870ef55920
 }
