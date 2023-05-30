@@ -34,7 +34,7 @@ unsigned int pad_s = 0, su = 0, i = 0, j;
 (void)params;
 switch ((int)(!s))
 {
-case 1 :
+case 1:
 	s = NULL_STRING;
 	break;
 }
@@ -90,10 +90,10 @@ char *s = va_arg(ap, char *);
 char *hex;
 int su = 0;
 
-if((int)(!s))
+if ((int)(!s))
 	return (_puts(NULL_STRING));
 
-for(; *s; s++)
+for (; *s; s++)
 {
 	if ((*s > 0 && *s < 32) || *s >= 127)
 	{

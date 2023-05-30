@@ -90,7 +90,7 @@ if (neg && pad_char == ' ')
 n += putchar('-');
 if (params->plus_flag && !neg2 && pad_char == ' ' && !params->unsign)
 n += putchar('+');
-else if (!params->plus_flag && params-> space_flag && !neg2 &&
+else if (!params->plus_flag && params->space_flag && !neg2 &&
 !params->unsign && !params->zero_flag)
 n += putchar(' ');
 n += _puts(str);
