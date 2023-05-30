@@ -7,16 +7,16 @@
  */
 int print_char(va_list ap, params_t *params)
 {
-char padding = ' ';
-unsigned int pad_c = 1, s = 0, c = va_arg(ap, int);
+char pad_char = ' ';
+unsigned int pad = 1, sum = 0, ch = va_arg(ap, int);
 
 if (params->minus_flag)
-	s += _putchar(c);
-while (pad_c++ < params->width)
-	s += _putchar(padding);
+	sum += _putchar(ch);
+while (pad++ < params->width)
+	sum += _putchar(pad_char);
 if (!params->minus_flag)
-	s += _putchar(c);
-return (s);
+	sum += _putchar(ch);
+return (sum);
 }
 
 /**
@@ -28,40 +28,39 @@ return (s);
 
 int print_string(va_list ap, params_t *params)
 {
-char padding = ' ', *s = va_arg(ap, char *);
-unsigned int pad_s = 0, su = 0, i = 0, j;
+char pad_char = ' ', *str = va_arg(ap, char *);
+unsigned int pad = 0, sum = 0, i = 0, j;
 
 (void)params;
-switch ((int)(!s))
+switch ((int)(!str))
 {
 case 1:
-	s = NULL_STRING;
+	str = NULL_STRING;
 	break;
 }
-j = pad_s = strlen(s);
-if (params->precision < pad_s)
-	j = pad_s = params->precision;
+j = pad = strlen(str);
+if (params->precision < pad)
+	j = pad = params->precision;
 if (params->minus_flag)
 {
-
 	if (params->precision != UINT_MAX)
-		for (i = 0; i < pad_s; i++)
-			su += _putchar(*s++);
+		for (i = 0; i < pad; i++)
+			sum += _putchar(*str++);
 	else
-		su += _puts(s);
+		sum += _puts(str);
 }
 
 while (j++ < params->width)
-	su += _putchar(padding);
+	sum += _putchar(pad_char);
 if (!params->minus_flag)
 {
 	if (params->precision != UINT_MAX)
-		for (i = 0; i < pad_s; i++)
-			su += _putchar(*s++);
+		for (i = 0; i < pad; i++)
+			sum += _putchar(*str++);
 	else
-		su += _puts(s);
+		sum += _puts(str);
 }
-return (su);
+return (sum);
 }
 
 /**
@@ -86,28 +85,28 @@ return (_putchar('%'));
 
 int print_S(va_list ap, params_t *params)
 {
-char *s = va_arg(ap, char *);
+char *str = va_arg(ap, char *);
 char *hex;
-int su = 0;
+int sum = 0;
 
-if ((int)(!s))
+if ((int)(!str))
 	return (_puts(NULL_STRING));
 
-for (; *s; s++)
+for (; *str; str++)
 {
-	if ((*s > 0 && *s < 32) || *s >= 127)
+	if ((*str > 0 && *str < 32) || *str >= 127)
 	{
-		su += _putchar('\\');
-		su += _putchar('x');
-		hex = convert(*s, 16, 0, params);
+		sum += _putchar('\\');
+		sum += _putchar('x');
+		hex = convert(*str, 16, 0, params);
 		if (!hex[1])
-			su += _putchar('0');
-		su += _puts(hex);
+			sum += _putchar('0');
+		sum += _puts(hex);
 	}
 	else
-		su += _putchar(*s);
+		sum += _putchar(*str);
 }
-return (su);
+return (sum);
 }
 
 /**
