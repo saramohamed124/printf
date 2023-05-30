@@ -1,4 +1,5 @@
-#includ "main.h"
+#include "main.h"
+#include <stdarg.h>
 
 int print_char(va_list ap, params_t *params)
 {
